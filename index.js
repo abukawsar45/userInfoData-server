@@ -50,7 +50,20 @@ async function run() {
           }
       });
 
-     
+      // search user name
+       app.get('/Userby/:name', async (req, res) => {
+         try {
+           const name = req.params.name.toLocaleLowerCase();
+           const result = await usersCollection
+             .find({ name: { $regex: name, $options: 'i' } })
+             .toArray();
+           res.send(result);
+         } catch (error) {
+           // handle  error 
+           console.error('Error:', error);
+           res.status(500).send('Internal Server Error');
+         }
+       });
 
     console.log(
       'Pinged your deployment. You successfully connected to MongoDB!'
