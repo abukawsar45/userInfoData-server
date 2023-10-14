@@ -79,8 +79,7 @@ run().catch(console.dir);
 // mongodb end
 
 app.get('/',(req, res)=>{
-  res.send(`Users management server is running oddn port: ${port}`)
-  console.log('process.env')
+  res.send('Users management server is running')
 });
 
 app.get('/users', (req,res)=>{
